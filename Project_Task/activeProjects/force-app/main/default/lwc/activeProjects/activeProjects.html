@@ -1,0 +1,37 @@
+<template>
+    <lightning-card title="Active Projects">
+        <template if:true={projects}>
+            <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                <thead>
+                    <tr>
+                        <th>Project Name</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Remaining Budget</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={projects} for:item="project">
+                        <tr key={project.Id}>
+                            <td>{project.Project_Name__c}</td>
+                            <td>{project.Start_Date__c}</td>
+                            <td>{project.End_Date__c}</td>
+                            <td>{project.RemainingBudget}</td>
+                            <td>
+                                <lightning-button 
+                                    label="Mark as Completed" 
+                                    onclick={markAsCompleted} 
+                                    data-id={project.Id}>
+                                </lightning-button>
+                            </td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </template>
+        <template if:false={projects}>
+            <p>No active projects found.</p>
+        </template>
+    </lightning-card>
+</template>
